@@ -12,5 +12,10 @@
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present"
+  },
+  "dependencies": {
+    "@notionhq/client": "^5.22.0",
+    "@supabase/supabase-js": "^2.106.2",
+    "dotenv": "^17.4.2"
   }
 }

@@ -10,6 +10,7 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
+    "@google/genai": "^2.6.0",
     "@supabase/supabase-js": "^2.49.1",
     "dotenv": "^16.4.7",
     "playwright": "^1.42.1",

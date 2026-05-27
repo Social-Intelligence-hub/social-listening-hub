@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { scrapeRss, Keyword, RawMentionInput } from './scrapers/rss';
 import { scrapeYoutubeChannel } from './scrapers/youtube';
 import { scrapeUrlScraping } from './scrapers/playwright';
+import { processMentions } from './processors/aiProcessor';
 
 // Cargar variables de entorno
 dotenv.config();
@@ -109,7 +110,11 @@ async function main() {
       }
     }
     
-    console.log(`\n[Worker] Cycle completed successfully. Total raw mentions saved: ${totalAdded}`);
+    console.log(`\n[Worker] Scraper cycle completed successfully. Total raw mentions saved: ${totalAdded}`);
+
+    // Iniciar el procesamiento de clasificación con IA automáticamente al finalizar el scraping
+    console.log('\n[Worker] Triggering AI classification cycle for raw mentions...');
+    await processMentions();
   } catch (error: any) {
     console.error('[Worker] Fatal execution error in scraper worker:', error.message || error);
     process.exit(1);
